@@ -10,10 +10,7 @@ interface IUser extends Document {
   resetPasswordExpire?: Date;
   comparePassword: (candidatePassword: string) => Promise<boolean>;
   avatarUrl?: string;
-  tips: mongoose.Types.ObjectId[];
-  restaurants: mongoose.Types.ObjectId[];
-  destinations: mongoose.Types.ObjectId[];
-  hotels: mongoose.Types.ObjectId[];
+  post: mongoose.Types.ObjectId[];
   tours: mongoose.Types.ObjectId[];
   favourite: mongoose.Types.ObjectId[];
   yourLikes: mongoose.Types.ObjectId[];
@@ -48,12 +45,7 @@ const userSchema: Schema = new Schema(
     resetPasswordExpire: {
       type: Date,
     },
-    tips: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tip" }],
-    restaurants: [{ type: mongoose.Schema.Types.ObjectId, ref: "Restaurant" }],
-    destinations: [
-      { type: mongoose.Schema.Types.ObjectId, ref: "Destination" },
-    ],
-    hotels: [{ type: mongoose.Schema.Types.ObjectId, ref: "Hotel" }],
+    posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tip" }],
     tours: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tour" }],
     favourite: [{ type: mongoose.Schema.Types.ObjectId, ref: "Favourite" }],
     yourLikes: [{ type: mongoose.Schema.Types.ObjectId, ref: "Post" }],

@@ -23,7 +23,7 @@ class UserService {
     return findedUser;
   }
   async findUserByIdAndPopulate(id: string) {
-    const findedUser = await User.findById(id).populate("tips");
+    const findedUser = await User.findById(id).populate("posts");
     return findedUser;
   }
   async updateProfileImage(id: string, file: string) {

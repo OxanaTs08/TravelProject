@@ -17,23 +17,9 @@ class FileService {
   async saveAvatar(file: string): Promise<string | null> {
     return this.saveFile(file, "avatars");
   }
-
-  async saveHotelImage(file: string): Promise<string | null> {
-    return this.saveFile(file, "hotels");
+  async savePostImage(file: string): Promise<string | null> {
+    return this.saveFile(file, "posts");
   }
-
-  async saveDestinationImage(file: string): Promise<string | null> {
-    return this.saveFile(file, "destinations");
-  }
-
-  async saveTipImage(file: string): Promise<string | null> {
-    return this.saveFile(file, "tips");
-  }
-
-  async saveRestaurantImage(file: string): Promise<string | null> {
-    return this.saveFile(file, "restaurants");
-  }
-
   async saveTourImage(file: string): Promise<string | null> {
     return this.saveFile(file, "tours");
   }

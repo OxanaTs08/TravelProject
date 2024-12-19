@@ -1,10 +1,18 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
 
-interface IDestination extends Document {
+export enum PostType {
+  Tip = "tip",
+  Hotel = "hotel",
+  Restaurant = "restaurant",
+  Destination = "destination",
+}
+
+interface IPost extends Document {
   user: mongoose.Types.ObjectId;
+  type: PostType;
   location: string;
+  postImage: string[];
   description: string;
-  destinationImage: string[];
   likes: mongoose.Types.ObjectId[];
   savedBy: mongoose.Types.ObjectId[];
   comments: mongoose.Types.ObjectId[];
@@ -12,7 +20,7 @@ interface IDestination extends Document {
   updatedAt: Date;
 }
 
-const destinationSchema: Schema<IDestination> = new Schema(
+const postSchema: Schema<IPost> = new Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -27,7 +35,7 @@ const destinationSchema: Schema<IDestination> = new Schema(
       type: String,
       maxlength: 2200,
     },
-    destinationImage: [
+    postImage: [
       {
         type: String,
         required: true,
@@ -57,9 +65,6 @@ const destinationSchema: Schema<IDestination> = new Schema(
   }
 );
 
-const Destination: Model<IDestination> = mongoose.model<IDestination>(
-  "Destination",
-  destinationSchema
-);
+const Post: Model<IPost> = mongoose.model<IPost>("Post", postSchema);
 
-export { Destination, IDestination };
+export { Post, IPost };
