@@ -5,6 +5,7 @@ import { runApp } from "./db/index";
 import authenticateJWT from "./middleWares/authMiddleWare";
 import { User } from "./models/userModel";
 import { Request, Response, NextFunction, RequestHandler } from "express";
+import authRouter from "./routes/auth";
 
 dotenv.config({ path: ".env" });
 const port = process.env.PORT || 4001;
@@ -12,7 +13,7 @@ const port = process.env.PORT || 4001;
 const app = express();
 app.use(express.json({ limit: "50mb" }));
 app.use(cors({ origin: "*" }));
-// app.use("/user", userRouter);
+app.use("/user", authRouter);
 
 interface JwtPayload {
   id: string;
