@@ -72,60 +72,14 @@ class PostController {
     next: NextFunction
   ): Promise<any> {
     try {
-      const findedUsers = await userService.findAllUsers();
-      if (!findedUsers) {
-        res.status(404).json({ message: " Users not found" });
-        next(ApiError.badRequest("Users not found "));
+      const findedPosts = await postService.findAllPosts();
+      if (!findedPosts) {
+        res.status(404).json({ message: " Posts not found" });
+        next(ApiError.badRequest("Posts not found "));
       }
-      return res.json(findedUsers);
+      return res.json(findedPosts);
     } catch (error: any) {
       next(ApiError.internal(error));
-    }
-  }
-  async getAllUserDataByUserId(
-    req: CustomRequest,
-    res: Response,
-    next: NextFunction
-  ): Promise<any> {
-    const userId = req.params.id;
-    try {
-      const userData = await userService.findUserByIdAndPopulate(userId);
-
-      if (!userData) {
-        res.status(404).json({ message: "Error on get userData" });
-        next(ApiError.badRequest("UserId is not correct"));
-      }
-      return res.json(userData);
-    } catch (error: any) {
-      next(ApiError.internal(error));
-    }
-  }
-  async updateUserProfileImage(
-    req: CustomRequest,
-    res: Response,
-    next: NextFunction
-  ): Promise<any> {
-    const userId = req.user?.id;
-    const profileImage = req.body;
-    try {
-      if (!userId || !profileImage) {
-        res.status(404).json({ message: "UserID or image not entered" });
-        next(ApiError.badRequest("Wrong  request data"));
-        return;
-      }
-      const userData = await userService.updateProfileImage(
-        userId,
-        profileImage
-      );
-
-      if (!userData) {
-        res.status(404).json({ message: "Error on get userData" });
-        next(ApiError.badRequest("UserId is not correct"));
-      }
-      return res.json(userData);
-    } catch (error: any) {
-      next(ApiError.internal(error));
-      res.status(500).json({ message: "Internal server Error" });
     }
   }
 }
