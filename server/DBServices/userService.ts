@@ -37,12 +37,12 @@ class UserService {
       { new: true }
     );
   }
-  async updateUserTips(userId: any, tipId: any) {
-    const newTip = await User.findByIdAndUpdate(
+  async updateUserPosts(userId: string, postId: string) {
+    const newPost = await User.findByIdAndUpdate(
       { _id: userId },
-      { $push: { tips: tipId } }
+      { $push: { posts: postId } }
     );
-    return newTip;
+    return newPost;
   }
 }
 

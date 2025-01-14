@@ -8,7 +8,8 @@ export enum PostType {
 }
 
 interface IPost extends Document {
-  user: mongoose.Types.ObjectId;
+  _id: mongoose.Types.ObjectId;
+  userId: mongoose.Types.ObjectId;
   type: PostType;
   location: string;
   postImage: string[];
@@ -22,9 +23,14 @@ interface IPost extends Document {
 
 const postSchema: Schema<IPost> = new Schema(
   {
-    user: {
+    userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+      required: true,
+    },
+    type: {
+      type: String,
+      enum: ["tip", "hotel", "restaurant", "destination"],
       required: true,
     },
     location: {

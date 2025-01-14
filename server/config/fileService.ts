@@ -17,7 +17,7 @@ class FileService {
   async saveAvatar(file: string): Promise<string | null> {
     return this.saveFile(file, "avatars");
   }
-  async savePostImage(file: string): Promise<string | null> {
+  async savePostImage(file: string[0]): Promise<string | null> {
     return this.saveFile(file, "posts");
   }
   async saveTourImage(file: string): Promise<string | null> {

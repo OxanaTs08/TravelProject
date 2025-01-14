@@ -8,7 +8,7 @@ interface IComment extends Document {
   updatedAt: Date;
 }
 
-const tipSchema: Schema<IComment> = new Schema(
+const commentSchema: Schema<IComment> = new Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -30,6 +30,9 @@ const tipSchema: Schema<IComment> = new Schema(
   }
 );
 
-const Comment: Model<IComment> = mongoose.model<IComment>("Comment", tipSchema);
+const Comment: Model<IComment> = mongoose.model<IComment>(
+  "Comment",
+  commentSchema
+);
 
 export { Comment, IComment };

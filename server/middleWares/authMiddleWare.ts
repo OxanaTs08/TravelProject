@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { User } from "../models/userModel";
+import { User, IUser } from "../models/userModel";
 import dotenv from "dotenv";
 dotenv.config();
 import { Request, Response, NextFunction, RequestHandler } from "express";
@@ -11,7 +11,7 @@ interface JwtPayload {
   username: string;
 }
 
-interface CustomRequest extends Request {
+export interface CustomRequest extends Request {
   user?: JwtPayload;
 }
 
